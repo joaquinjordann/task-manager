@@ -118,6 +118,9 @@ class TaskController extends Controller
                     new ValidWorkingDay,
                     new MaxTasksPerDay($project->id, 5)
                 ],
+                [
+                    'due_date.after_or_equal' => 'La fecha de vencimiento debe ser igual o posterior a hoy',
+                ],
                 'title' => [
                     'required',
                     'string',
@@ -237,6 +240,9 @@ class TaskController extends Controller
                 'after_or_equal:today',
                 new ValidWorkingDay,
                 new MaxTasksPerDay($project->id, 5)
+            ],
+            [
+                'due_date.after_or_equal' => 'La fecha de vencimiento debe ser igual o posterior a hoy',
             ],
             'status' => 'required|in:pendiente,en progreso,completada'
         ], [
